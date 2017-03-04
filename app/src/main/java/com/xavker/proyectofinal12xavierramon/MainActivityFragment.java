@@ -21,6 +21,9 @@ import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
+import com.google.android.gms.ads.doubleclick.PublisherAdView;
+
 public class MainActivityFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +38,7 @@ public class MainActivityFragment extends Fragment {
     private CallbackManager callbackManager;
     private ProfilePictureView profilePictureView;
     private OnFragmentInteractionListener mListener;
-
+    private PublisherAdView publisherAdView;
     public MainActivityFragment() {
         // Required empty public constructor
     }
@@ -96,6 +99,30 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        if(publisherAdView!=null){
+            publisherAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        if(publisherAdView!=null){
+            publisherAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        if(publisherAdView!=null){
+            publisherAdView.resume();
+        }
+    super.onResume();
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         LoginButton loginButton=(LoginButton)view.findViewById(R.id.login_button);
@@ -106,7 +133,9 @@ public class MainActivityFragment extends Fragment {
 
         textUser=(TextView)view.findViewById(R.id.textdetails);
         profilePictureView=(ProfilePictureView)view.findViewById(R.id.profilePicture1);
-
+        publisherAdView=(PublisherAdView) view.findViewById(R.id.banner);
+        PublisherAdRequest publisherAdRequest=new PublisherAdRequest.Builder().build();
+        publisherAdView.loadAd(publisherAdRequest);
         AccessTokenTracker accessTokenTracker=new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
@@ -136,7 +165,7 @@ public class MainActivityFragment extends Fragment {
         accessToken=loginResult.getAccessToken();
             Profile profile=Profile.getCurrentProfile();
             if(profile!=null){
-                textUser.setText("Bienvenido"+profile.getName()+"!");
+                textUser.setText("Bienvenido "+profile.getName()+"!");
                 profilePictureView.setProfileId(profile.getId());
             }
         }

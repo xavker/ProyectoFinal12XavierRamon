@@ -1,8 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xavker.proyectofinal12xavierramon.MainActivityFragment">
+    tools:context="com.xavker.proyectofinal12xavierramon.MainActivityFragment"
+    android:background="@color/com_facebook_button_background_color_selected">
 
     <!-- TODO: Update blank fragment layout -->
     <com.facebook.login.widget.ProfilePictureView
@@ -12,16 +15,6 @@
         android:layout_centerInParent="true"
         />
 
-    <TextView
-        android:text="@string/secion_no_iniciada"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/profilePicture1"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textdetails"
-        android:textStyle="normal|bold"></TextView>
-
     <com.facebook.login.widget.LoginButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,4 +22,27 @@
         android:layout_marginTop="29dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/secion_no_iniciada"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textdetails"
+        android:textStyle="normal|bold"
+        android:layout_above="@+id/profilePicture1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp"></TextView>
+
+    <com.google.android.gms.ads.doubleclick.PublisherAdView
+        android:id="@+id/banner"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/id_banner"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+    </com.google.android.gms.ads.doubleclick.PublisherAdView>
+
 </RelativeLayout>
