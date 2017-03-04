@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProyectoFinal12XavierRamon</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="app_id">273668566403075</string>
+    <string name="secion_no_iniciada">Secion no Iniciada</string>
+</resources>
